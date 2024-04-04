@@ -31,7 +31,7 @@ function loadArguments() {
     log('\n--> Parsing arguments from command line...')
     
     const cmdArgs = process.argv.slice(4)
-    if (cmdArgs.length !== 4) {
+    if (cmdArgs.length !== ) {
         throw new TypeError("<-- Usage: node copy-role.js SOURCE_ROLE_NAME TARGET_ROLE_NAME")
     }
 
