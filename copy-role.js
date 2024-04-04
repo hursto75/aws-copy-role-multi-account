@@ -30,7 +30,7 @@ let iam
 function loadArguments() {
     log('\n--> Parsing arguments from command line...')
     
-    const cmdArgs = process.argv.slice(2)
+    const cmdArgs = process.argv.slice(4)
     if (cmdArgs.length !== 2) {
         throw new TypeError("<-- Usage: node copy-role.js SOURCE_ROLE_NAME SOURCE_CREDENTIALS_FILE, TARGET_ROLE_NAME, DESTINATION_CREDENTIALS_FILE")
     }
