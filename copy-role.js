@@ -10,9 +10,9 @@ let iam
         const sourceRole = await fetchRole(sourceRoleName)
         const inlinePolicies = await fetchInlinePolicies(sourceRoleName)
         const managedPolicies = await fetchManagedPolicies(sourceRoleName)
-        
+
         await createRoleFromExisting(sourceRole, targetRoleName)
-        
+
         if (inlinePolicies.length > 0) {
             await addInlinePolicies(targetRoleName, inlinePolicies)
         }
@@ -29,10 +29,10 @@ let iam
 
 function loadArguments() {
     log('\n--> Parsing arguments from command line...')
-    
+
     const cmdArgs = process.argv.slice(4)
-    if (cmdArgs.length !== ) {
-        throw new TypeError("<-- Usage: node copy-role.js SOURCE_ROLE_NAME TARGET_ROLE_NAME")
+    if (cmdArgs.length !== 4) {
+        throw new TypeError("<-- Usage: node copy-role.js SOURCE_ROLE_NAME SOURCE_CREDENTIALS_FILE TARGET_ROLE_NAME DESTINATION_CREDENTIALS_FILE")
     }
 
     log(`<-- Arguments loaded. Source role name: ${cmdArgs[0]}, Source Credentials File: ${cmdArgs[1]}, target role name: ${cmdArgs[2]} Destination Credentials File: ${cmdArgs[3]}`)
@@ -100,7 +100,7 @@ async function fetchInlinePolicies(roleName) {
     async function fetchInlinePoliciesRecursive(marker) {
         AWS.config.credentials = sourceCredentials;
         let inlinePolicyNames
-        
+
         const response = await getIam().listRolePolicies({RoleName: roleName, Marker: marker}).promise()
         inlinePolicyNames = response.PolicyNames
 
@@ -130,7 +130,7 @@ async function fetchManagedPolicies(roleName) {
     async function fetchManagedPoliciesRecursive(marker) {
         AWS.config.credentials = sourceCredentials;
         let managedPolicies
-        
+
         const response = await getIam().listAttachedRolePolicies({RoleName: roleName, Marker: marker}).promise()
         managedPolicies = response.AttachedPolicies
 
@@ -216,25 +216,25 @@ function log(message) {
 }
 
 function error(message) {
-    console.log(`                                          
-              ████████████                                                        
-            ████  ██████████                                                      
-            ████████████████                                                      
-            ████████                                                    ████      
-            ████████████                                                ████      
-██        ████████                                                      ████      
+    console.log(`
+              ████████████
+            ████  ██████████
+            ████████████████
+            ████████                                                    ████
+            ████████████                                                ████
+██        ████████                                                      ████
 ████    ██████████████                                ████        ████  ████  ████
 ██████████████████  ██                                ████  ██    ████  ████  ████
 ██████████████████                                    ████  ██    ████  ████  ████
   ████████████████                                ██  ████  ██    ████  ████  ████
     ████████████                                  ██  ████████    ████████████████
-      ████████                                    ██  ████          ████████████  
-      ████  ██                                    ████████              ████      
-      ██    ██      ████          ████                ████              ████      
-      ████  ████  ██    ██      ██    ██              ████              ████      
+      ████████                                    ██  ████          ████████████
+      ████  ██                                    ████████              ████
+      ██    ██      ████          ████                ████              ████
+      ████  ████  ██    ██      ██    ██              ████              ████
   ████████████████        ██████        ████████████  ████  ██████████  ████  ████
-                    ████          ████                ████              ████      
-    ████                    ████        ████                ████  ████            
+                    ████          ████                ████              ████
+    ████                    ████        ████                ████  ████
                 ████                            ████                          ████
 `)
     console.error(message)
