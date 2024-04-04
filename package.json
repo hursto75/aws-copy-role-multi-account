@@ -1,20 +1,20 @@
 {
   "name": "aws-iam-copy-role",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maximivanov/aws-iam-copy-role.git"
+    "url": "git+https://github.com/hursto75/aws-copy-role-multi-account.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/maximivanov/aws-iam-copy-role/issues"
+    "url": "https://github.com/hursto75/aws-copy-role-multi-account/issues"
   },
-  "homepage": "https://github.com/maximivanov/aws-iam-copy-role#readme",
+  "homepage": "https://github.com/hursto75/aws-copy-role-multi-account/blob/main/README.md",
   "dependencies": {
     "aws-sdk": "^2.863.0"
   }
