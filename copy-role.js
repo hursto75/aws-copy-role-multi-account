@@ -32,7 +32,7 @@ function loadArguments() {
     
     const cmdArgs = process.argv.slice(4)
     if (cmdArgs.length !== 4) {
-        throw new TypeError("<-- Usage: node copy-role.js SOURCE_ROLE_NAME SOURCE_CREDENTIALS_FILE, TARGET_ROLE_NAME, DESTINATION_CREDENTIALS_FILE")
+        throw new TypeError("<-- Usage: node copy-role.js SOURCE_ROLE_NAME TARGET_ROLE_NAME")
     }
 
     log(`<-- Arguments loaded. Source role name: ${cmdArgs[0]}, Source Credentials File: ${cmdArgs[1]}, target role name: ${cmdArgs[2]} Destination Credentials File: ${cmdArgs[3]}`)
@@ -43,24 +43,6 @@ function loadArguments() {
 function checkAwsCredentials() {
     log('\n--> Checking if AWS credentials are loaded...')
 
-    // Load source and destination AWS credentials files
-    const sourceCredentialsFile = "sourceCredentialsFile";
-    const destinationCredentialsFile = "destinationCredentialsFile";
-
-    // Load source credentials
-    const sourceCredentials = new AWS.SharedIniFileCredentials({ filename: sourceCredentialsFile });
-    AWS.config.credentials = sourceCredentials;
-
-    // Check if source credentials are loaded
-    if (!AWS.config.credentials) {
-        throw new Error(`<-- Failed to find source AWS credentials. Make sure the source credentials file is correct.`);
-    }
-
-    // Load destination credentials
-    const destinationCredentials = new AWS.SharedIniFileCredentials({ filename: destinationCredentialsFile });
-    AWS.config.credentials = destinationCredentials;
-
-    // Check if destination credentials are loaded
     if (!AWS.config.credentials) {
         throw new Error(`<-- Failed to find destination AWS credentials. Make sure the destination credentials file is correct.`);
     }
