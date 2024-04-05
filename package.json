@@ -1,5 +1,5 @@
 {
-  "name": "aws-iam-copy-role",
+  "name": "aws-copy-role-multi-account",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
