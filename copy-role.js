@@ -32,7 +32,7 @@ function loadArguments() {
 
     const cmdArgs = process.argv.slice(4)
     if (cmdArgs.length !== 4) {
-        throw new TypeError("<-- Usage: node copy-role.js SOURCE_ROLE_NAME TARGET_ROLE_NAME")
+        throw new TypeError("<-- Usage: node copy-role.js SOURCE_ROLE_NAME SOURCE_CREDENTIALS_FILE TARGET_ROLE_NAME DESTINATION_CREDENTIALS_FILE"
     }
 
     log(`<-- Arguments loaded. Source role name: ${cmdArgs[0]}, Source Credentials File: ${cmdArgs[1]}, target role name: ${cmdArgs[2]} Destination Credentials File: ${cmdArgs[3]}`)
